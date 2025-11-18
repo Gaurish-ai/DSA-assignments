@@ -1,0 +1,59 @@
+#include<iostream>
+using namespace std;
+class Node
+{
+    public:
+    int data;
+    Node* left;
+    Node* right;
+    Node(int x)
+    {
+        data=x;
+        left=right=NULL;
+    }
+};
+void preorder(Node* x,vector<int>& result)
+{
+    if(x==NULL)
+    {
+        return;
+    }
+    result.push_back(x->data)
+    preorder(x->left);
+    preorder(x->right);
+}
+void inorder(Node* x,vector<int>& result)
+{
+      if(x==NULL)
+    {
+        return;
+    }
+    inorder(x->left);
+    result.push_back(x->data);
+    inorder(x->right);
+}
+void postorder(Node* x,vector<int>& result)
+{
+      if(x==NULL)
+    {
+        return;
+    }
+    postorder(x->left);
+    postorder(x->right);
+    result.push_back(x->data);
+}
+int main()
+{
+    Node *root=new Node(1);
+     root->left = new Node(2);
+    root->right = new Node(3);
+    root->left->left = new Node(4);
+    root->left->right = new Node(5);
+    root->right->right = new Node(6);
+    vector<int> res;
+    preOrder(root, res);
+    for(int node : res) 
+        cout << node << " ";
+
+    return 0;
+}
