@@ -1,4 +1,5 @@
 #include<iostream>
+#include<vector>
 using namespace std;
 class Node
 {
@@ -18,9 +19,9 @@ void preorder(Node* x,vector<int>& result)
     {
         return;
     }
-    result.push_back(x->data)
-    preorder(x->left);
-    preorder(x->right);
+    result.push_back(x->data);
+    preorder(x->left,result);
+    preorder(x->right,result);
 }
 void inorder(Node* x,vector<int>& result)
 {
@@ -28,9 +29,9 @@ void inorder(Node* x,vector<int>& result)
     {
         return;
     }
-    inorder(x->left);
+    inorder(x->left,result);
     result.push_back(x->data);
-    inorder(x->right);
+    inorder(x->right,result);
 }
 void postorder(Node* x,vector<int>& result)
 {
@@ -38,8 +39,8 @@ void postorder(Node* x,vector<int>& result)
     {
         return;
     }
-    postorder(x->left);
-    postorder(x->right);
+    postorder(x->left,result);
+    postorder(x->right,result);
     result.push_back(x->data);
 }
 int main()
@@ -51,7 +52,7 @@ int main()
     root->left->right = new Node(5);
     root->right->right = new Node(6);
     vector<int> res;
-    preOrder(root, res);
+    preorder(root, res);
     for(int node : res) 
         cout << node << " ";
 
